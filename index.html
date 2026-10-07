@@ -1,131 +1,567 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Medic Info Gabon</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="MEDIC INFO GABON - Trouvez facilement les hôpitaux et pharmacies au Gabon.">
+
+    <title>MEDIC INFO GABON</title>
+
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
-<header>
-    <div class="logo">⚕️</div>
-    <h1>MEDIC INFO GABON</h1>
-    <p>Trouvez un établissement de santé CNAMGS</p>
-</header>
+
+    <!-- =====================================================
+     HEADER
+===================================================== -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <a href="#" class="logo-link" onclick="retourAccueil()">
+
+                <div class="logo-icon">
+                    ⚕
+                </div>
+
+                <div class="logo-text">
+
+                    <strong>
+                        MEDIC INFO
+                    </strong>
+
+                    <span>
+                        GABON
+                    </span>
+
+                </div>
+
+            </a>
 
 
-<!-- ACCUEIL -->
-<section id="accueil" class="page active">
+            <!-- Navigation ordinateur -->
 
-<h2>Bienvenue</h2>
+            <nav class="desktop-nav">
 
-<p>
-Recherchez facilement un hôpital ou une pharmacie
-dans votre province.
-</p>
+                <button onclick="retourAccueil()">
+                    Accueil
+                </button>
 
-<button onclick="ouvrirProvince()">
-Commencer
-</button>
+                <button onclick="ouvrirProvince()">
+                    Provinces
+                </button>
 
-</section>
+                <button onclick="afficherAPropos()">
+                    À propos
+                </button>
 
-
-
-<!-- PROVINCES -->
-<section id="provinces" class="page">
-
-<h2>Choisir une province</h2>
-
-<select id="choixProvince" onchange="selectionProvince()">
-
-<option value="">
--- Sélectionner --
-</option>
-
-<option>Estuaire</option>
-<option>Haut-Ogooué</option>
-<option>Moyen-Ogooué</option>
-<option>Ngounié</option>
-<option>Nyanga</option>
-<option>Ogooué-Ivindo</option>
-<option>Ogooué-Lolo</option>
-<option>Ogooué-Maritime</option>
-<option>Woleu-Ntem</option>
-
-</select>
+            </nav>
 
 
-<button onclick="retourAccueil()">
-⬅️ Retour
-</button>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()" aria-label="Menu">
+                ☰
+            </button>
+
+        </div>
 
 
-</section>
+        <!-- Navigation mobile -->
+
+        <div id="mobileMenu" class="mobile-menu">
+
+            <button onclick="retourAccueil(); fermerMobileMenu();">
+                🏠 Accueil
+            </button>
+
+            <button onclick="ouvrirProvince(); fermerMobileMenu();">
+                🇬🇦 Provinces
+            </button>
+
+            <button onclick="afficherAPropos(); fermerMobileMenu();">
+                ℹ️ À propos
+            </button>
+
+        </div>
+
+    </header>
 
 
 
+    <!-- =====================================================
+     CONTENU PRINCIPAL
+===================================================== -->
 
-<!-- SERVICES -->
-<section id="services" class="page">
-
-<h2 id="nomProvince"></h2>
-
-
-<div class="menu">
-
-<button onclick="afficherHopitaux()">
-🏥 Hôpitaux
-</button>
+    <main class="main-container">
 
 
-<button onclick="afficherPharmacies()">
-💊 Pharmacies
-</button>
+        <!-- =====================================================
+     ACCUEIL
+===================================================== -->
+
+        <section id="accueil" class="page active">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+
+                        <img src="assets/images/drapeau-gabon.jpg" alt="Drapeau du Gabon">
+
+                        Santé au Gabon
+
+                    </span>
 
 
-<button onclick="retourProvince()">
-⬅️ Retour
-</button>
+                    <h1>
+                        Trouvez facilement
+                        <span>un établissement de santé</span>
+                    </h1>
 
 
+                    <p>
+                        Recherchez les hôpitaux et pharmacies
+                        disponibles dans les différentes provinces
+                        du Gabon.
+                    </p>
+
+
+                    <button class="primary-button" onclick="ouvrirProvince()">
+
+                        Commencer la recherche
+
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <div class="hero-card-icon">
+                        🏥
+                    </div>
+
+                    <h3>
+                        Votre santé,
+                        notre priorité
+                    </h3>
+
+                    <p>
+                        Accédez rapidement aux informations
+                        des établissements de santé.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Services -->
+
+            <div class="section-heading">
+
+                <span>
+                    Nos services
+                </span>
+
+                <h2>
+                    Que recherchez-vous ?
+                </h2>
+
+            </div>
+
+
+            <div class="service-grid">
+
+                <button class="service-card hospital-card" onclick="ouvrirProvincePourType('hopitaux')">
+
+                    <div class="service-icon">
+                        🏥
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Hôpitaux
+                        </h3>
+
+                        <p>
+                            Trouver une structure hospitalière
+                        </p>
+
+                    </div>
+
+                    <span class="service-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <button class="service-card pharmacy-card" onclick="ouvrirProvincePourType('pharmacies')">
+
+                    <div class="service-icon">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pharmacies
+                        </h3>
+
+                        <p>
+                            Trouver une pharmacie
+                        </p>
+
+                    </div>
+
+                    <span class="service-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+     PROVINCES
+===================================================== -->
+
+        <section id="provinces" class="page">
+
+            <div class="page-header">
+
+                <button class="back-button" onclick="retourAccueil()">
+                    ← Retour
+                </button>
+
+<span class="hero-badge">
+
+                        <img src="assets/images/drapeau-gabon.jpg" alt="Drapeau du Gabon">
+
+                        Santé au Gabon
+
+                    </span>
+                
+
+
+                <h1>
+                    Choisir une province
+                </h1>
+
+
+                <p>
+                    Sélectionnez une province pour voir
+                    les établissements disponibles.
+                </p>
+
+            </div>
+
+
+
+            <!-- Recherche -->
+
+            <div class="search-box">
+
+                <span>
+                    🔎
+                </span>
+
+                <input type="text" id="rechercheProvince" placeholder="Rechercher une province..."
+                    oninput="filtrerProvinces()">
+
+            </div>
+
+
+
+            <!-- Liste provinces -->
+
+            <div id="listeProvinces" class="province-grid">
+
+                <!-- Généré par JavaScript -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+     SERVICES D'UNE PROVINCE
+===================================================== -->
+
+        <section id="services" class="page">
+
+            <div class="page-header">
+
+                <button class="back-button" onclick="retourProvince()">
+                    ← Retour aux provinces
+                </button>
+
+
+                <span class="page-badge">
+                    Province sélectionnée
+                </span>
+
+
+                <h1 id="nomProvince">
+                </h1>
+
+
+                <p>
+                    Que souhaitez-vous rechercher ?
+                </p>
+
+            </div>
+
+
+
+            <div class="service-choice-grid">
+
+
+                <button class="big-service-card hospital-card" onclick="afficherHopitaux()">
+
+                    <div class="big-icon">
+                        🏥
+                    </div>
+
+                    <h2>
+                        Hôpitaux
+                    </h2>
+
+                    <p>
+                        Structures hospitalières
+                    </p>
+
+                    <span>
+                        Voir les établissements →
+                    </span>
+
+                </button>
+
+
+
+                <button class="big-service-card pharmacy-card" onclick="afficherPharmacies()">
+
+                    <div class="big-icon">
+                        💊
+                    </div>
+
+                    <h2>
+                        Pharmacies
+                    </h2>
+
+                    <p>
+                        Pharmacies disponibles
+                    </p>
+
+                    <span>
+                        Voir les pharmacies →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+     RESULTATS
+===================================================== -->
+
+        <section id="resultats" class="page">
+
+            <div class="page-header">
+
+                <button class="back-button" onclick="retourServices()">
+                    ← Retour
+                </button>
+
+
+                <span id="resultatBadge" class="page-badge">
+                </span>
+
+
+                <h1 id="titre">
+                </h1>
+
+
+                <p id="descriptionResultats">
+                </p>
+
+            </div>
+
+
+
+            <!-- Recherche établissement -->
+
+            <div class="search-box">
+
+                <span>
+                    🔎
+                </span>
+
+                <input type="text" id="rechercheEtablissement" placeholder="Rechercher un établissement..."
+                    oninput="filtrerEtablissements()">
+
+            </div>
+
+
+
+            <!-- Liste -->
+
+            <div id="liste" class="establishment-grid">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+     À PROPOS
+===================================================== -->
+
+        <section id="apropos" class="page">
+
+            <div class="page-header">
+
+                <button class="back-button" onclick="retourAccueil()">
+                    ← Retour
+                </button>
+
+
+                <span class="page-badge">
+                    MEDIC INFO
+                </span>
+
+
+                <h1>
+                    À propos
+                </h1>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    ⚕
+                </div>
+
+                <h2>
+                    MEDIC INFO GABON
+                </h2>
+
+                <p>
+                    MEDIC INFO GABON est une application web
+                    destinée à faciliter la recherche des
+                    établissements de santé au Gabon.
+                </p>
+
+                <p>
+                    L'application permet de rechercher des
+                    hôpitaux et pharmacies par province et
+                    d'accéder rapidement à leurs informations.
+                </p>
+
+
+                <div class="about-features">
+
+                    <div>
+    <img 
+        src="assets/images/drapeau-gabon.jpg" 
+        alt="Drapeau du Gabon"
+        class="mini-drapeau"
+    >
+
+    <strong>
+        9 provinces
+    </strong>
 </div>
 
+                    <div>
+                        🏥
+                        <strong>
+                            Hôpitaux
+                        </strong>
+                    </div>
 
-</section>
+                    <div>
+                        💊
+                        <strong>
+                            Pharmacies
+                        </strong>
+                    </div>
+
+                    <div>
+                        📍
+                        <strong>
+                            Localisation
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 
 
+    <!-- =====================================================
+     FOOTER
+===================================================== -->
+
+    <footer class="footer">
+
+        <div>
+
+            <strong>
+                MEDIC INFO GABON
+            </strong>
+
+            <p>
+                La santé à portée de main.
+            </p>
+
+        </div>
 
 
-<!-- RESULTATS -->
-<section id="resultats" class="page">
+        <p>
+            © 2026 MEDIC INFO GABON
+        </p>
 
-<h2 id="titre"></h2>
-
-
-<div id="liste"></div>
-
-
-<button onclick="retourServices()">
-⬅️ Retour
-</button>
-
-
-</section>
+    </footer>
 
 
 
+    <script src="etablissements.js"></script>
 
-
-<script src="etablissements.js"></script>
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 
 </body>
+
 </html>
